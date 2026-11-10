@@ -113,3 +113,14 @@ JOIN order_details
 GROUP BY products.product_id, categories.category_name
 -- Väljer att ordna de efter antal sålda för att få någon form av ordning på tabellen
 ORDER BY total_sold DESC;
+
+-- Uppgift 2.18
+SELECT customer_id, company_name
+FROM customers
+WHERE customer_id IN (
+    SELECT customer_id
+    FROM customers
+    EXCEPT
+    SELECT customer_id
+    FROM orders
+);
