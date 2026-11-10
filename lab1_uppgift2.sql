@@ -79,3 +79,26 @@ WHERE order_details.order_id = 10249;
 SELECT COUNT(*) AS amount
 FROM employees
 WHERE title = 'Sales Representative';
+
+-- Uppgift 2.16
+
+-- Få fram de beställningar som gjordes
+SELECT *
+FROM orders
+WHERE order_date = '1996-12-12';
+
+-- Få fram vilka produkter, pris per produkt och antal av varje produkt som såldes det datumet
+SELECT orders.order_id, products.product_name, order_details.unit_price, order_details.quantity
+FROM orders
+JOIN order_details
+    ON orders.order_id = order_details.order_id
+JOIN products
+    ON order_details.product_id = products.product_id
+WHERE orders.order_date = '1996-12-12';
+
+-- Summera värdet på produkterna som såldes det datumet
+SELECT SUM(order_details.unit_price * order_details.quantity) AS total_value
+FROM orders
+JOIN order_details
+    ON orders.order_id = order_details.order_id
+WHERE orders.order_date = '1996-12-12';
