@@ -58,3 +58,10 @@ FROM products
 JOIN categories 
     ON products.category_id = categories.category_id
 WHERE products.product_name = 'Lakkalikööri';
+
+-- Uppgift 2.13
+SELECT products.product_name AS product, suppliers.company_name as supplier
+FROM products
+JOIN suppliers 
+    ON (suppliers.supplier_id = products.supplier_id)
+WHERE products.product_name = 'Gravad lax';
