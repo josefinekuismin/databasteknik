@@ -102,3 +102,14 @@ FROM orders
 JOIN order_details
     ON orders.order_id = order_details.order_id
 WHERE orders.order_date = '1996-12-12';
+
+-- Uppgift 2.17
+SELECT products.product_name AS product, categories.category_name AS category, SUM(order_details.quantity) AS total_sold
+FROM products
+JOIN categories
+    ON products.category_id = categories.category_id
+JOIN order_details
+    ON products.product_id = order_details.product_id
+GROUP BY products.product_id, categories.category_name
+-- Väljer att ordna de efter antal sålda för att få någon form av ordning på tabellen
+ORDER BY total_sold DESC;
