@@ -124,3 +124,16 @@ WHERE customer_id IN (
     SELECT customer_id
     FROM orders
 );
+
+-- Uppgift 2.19
+SELECT product_name, unit_price
+FROM products
+WHERE category_id = 4;
+
+UPDATE products
+SET unit_price = unit_price * 1.20
+WHERE category_id = 4;
+
+SELECT product_name, unit_price AS updated_price
+FROM products
+WHERE category_id = 4;
