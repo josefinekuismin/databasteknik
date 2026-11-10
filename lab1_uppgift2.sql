@@ -26,3 +26,10 @@ ORDER BY country, city;
 SELECT first_name, last_name
 FROM employees
 WHERE last_name LIKE '%an%';
+
+-- Uppgift 2.7
+SELECT *
+FROM employees
+WHERE title LIKE '%Vice%' 
+    OR title LIKE '%President%' 
+    OR title LIKE '%Manager%';
