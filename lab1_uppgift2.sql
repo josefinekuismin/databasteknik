@@ -37,3 +37,7 @@ WHERE title LIKE '%Vice%'
 -- Uppgift 2.8
 SELECT product_name, unit_price, unit_price * 1.07 AS new_price
 FROM products;
+
+-- Uppgift 2.9
+SELECT product_name, unit_price * units_in_stock AS inventory_value
+FROM products;
