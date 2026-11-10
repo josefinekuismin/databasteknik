@@ -41,3 +41,8 @@ FROM products;
 -- Uppgift 2.9
 SELECT product_name, unit_price * units_in_stock AS inventory_value
 FROM products;
+
+-- Uppgift 2.10
+SELECT *
+FROM products
+WHERE units_in_stock < reorder_level;
