@@ -21,3 +21,8 @@ ORDER BY birth_date DESC;
 SELECT contact_name, country, city
 FROM customers
 ORDER BY country, city;
+
+-- Uppgift 2.6
+SELECT first_name, last_name
+FROM employees
+WHERE last_name LIKE '%an%';
