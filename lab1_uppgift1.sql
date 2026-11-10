@@ -43,3 +43,96 @@ VALUES
 SELECT * FROM movies;
 
 SELECT * FROM actors;
+
+-- Koppla rätt skådespelare till filmen The Hunger Games
+INSERT INTO movie_actor (
+    SELECT movies.movie_id, actors.actor_id
+    FROM movies, actors
+    WHERE movies.title = 'The Hunger Games'
+    AND actors.name = 'Jennifer Lawrence'
+);
+
+-- Koppla rätt skådespelare till filmen Titanic
+INSERT INTO movie_actor (
+    SELECT movies.movie_id, actors.actor_id
+    FROM movies, actors
+    WHERE movies.title = 'Titanic'
+    AND actors.name = 'Kate Winslet'
+);
+INSERT INTO movie_actor (
+    SELECT movies.movie_id, actors.actor_id
+    FROM movies, actors
+    WHERE movies.title = 'Titanic'
+    AND actors.name = 'Leonardo DiCaprio'
+);
+
+-- Koppla rätt skådespelare till filmen Divergent
+INSERT INTO movie_actor (
+    SELECT movies.movie_id, actors.actor_id
+    FROM movies, actors
+    WHERE movies.title = 'Divergent'
+    AND actors.name = 'Kate Winslet'
+);
+INSERT INTO movie_actor (
+    SELECT movies.movie_id, actors.actor_id
+    FROM movies, actors
+    WHERE movies.title = 'Divergent'
+    AND actors.name = 'Shailene Woodley'
+);
+
+-- Koppla rätt skådespelare till filmen Inception
+INSERT INTO movie_actor (
+    SELECT movies.movie_id, actors.actor_id
+    FROM movies, actors
+    WHERE movies.title = 'Inception'
+    AND actors.name = 'Leonardo DiCaprio'
+);
+
+-- Koppla rätt skådespelare till filmen Don't Look Up
+INSERT INTO movie_actor (
+    SELECT movies.movie_id, actors.actor_id
+    FROM movies, actors
+    WHERE movies.title = 'Don´t Look Up'
+    AND actors.name = 'Leonardo DiCaprio'
+);
+INSERT INTO movie_actor (
+    SELECT movies.movie_id, actors.actor_id
+    FROM movies, actors
+    WHERE movies.title = 'Don´t Look Up'
+    AND actors.name = 'Kate Winslet'
+);
+
+-- Koppla rätt skådespelare till filmen American Hustle
+INSERT INTO movie_actor (
+    SELECT movies.movie_id, actors.actor_id
+    FROM movies, actors
+    WHERE movies.title = 'American Hustle'
+    AND actors.name = 'Jennifer Lawrence'
+);
+INSERT INTO movie_actor (
+    SELECT movies.movie_id, actors.actor_id
+    FROM movies, actors
+    WHERE movies.title = 'American Hustle'
+    AND actors.name = 'Bradley Cooper'
+);
+
+-- Koppla rätt skådespelare till filmen A Star is Born
+INSERT INTO movie_actor (
+    SELECT movies.movie_id, actors.actor_id
+    FROM movies, actors
+    WHERE movies.title = 'A Star is Born'
+    AND actors.name = 'Bradley Cooper'
+);
+
+-- Koppla rätt skådespelare till filmen Fault in our Stars
+INSERT INTO movie_actor (
+    SELECT movies.movie_id, actors.actor_id
+    FROM movies, actors
+    WHERE movies.title = 'Fault in our Stars'
+    AND actors.name = 'Shailene Woodley'
+);
+
+
+SELECT * FROM movie_actor;
+
+DELETE FROM movie_actor;
