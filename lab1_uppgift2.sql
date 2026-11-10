@@ -16,3 +16,8 @@ WHERE company_name = 'Svensk Sjöföda AB';
 SELECT first_name, last_name, birth_date
 FROM employees
 ORDER BY birth_date DESC;
+
+-- Uppgift 2.5
+SELECT contact_name, country, city
+FROM customers
+ORDER BY country, city;
