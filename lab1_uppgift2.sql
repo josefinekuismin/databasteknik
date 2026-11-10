@@ -46,3 +46,8 @@ FROM products;
 SELECT *
 FROM products
 WHERE units_in_stock < reorder_level;
+
+-- Uppgift 2.11
+SELECT *
+FROM products
+WHERE units_in_stock + units_on_order < reorder_level;
