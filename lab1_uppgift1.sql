@@ -132,7 +132,14 @@ INSERT INTO movie_actor (
     AND actors.name = 'Shailene Woodley'
 );
 
-
 SELECT * FROM movie_actor;
+
+-- Kunna se titeln på filmen och skådespelarens namn istället för id-nummer
+SELECT movies.title, actors.name
+FROM movie_actor
+JOIN movies
+    ON movie_actor.movie_id = movies.movie_id
+JOIN actors
+    ON movie_actor.actor_id = actors.actor_id;
 
 DELETE FROM movie_actor;
