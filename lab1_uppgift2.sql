@@ -137,3 +137,24 @@ WHERE category_id = 4;
 SELECT product_name, unit_price AS updated_price
 FROM products
 WHERE category_id = 4;
+
+-- Uppgift 2.20
+SELECT products.product_name, products.unit_price, suppliers.company_name AS supplier
+FROM products
+JOIN suppliers
+    ON products.supplier_id = suppliers.supplier_id
+WHERE suppliers.company_name = 'Tokyo Traders';
+
+UPDATE products
+SET unit_price = unit_price * 1.10
+WHERE supplier_id IN (
+    SELECT supplier_id
+    FROM suppliers
+    WHERE company_name = 'Tokyo Traders'
+);
+
+SELECT products.product_name, products.unit_price AS updated_unit_price, suppliers.company_name AS supplier
+FROM products
+JOIN suppliers
+    ON products.supplier_id = suppliers.supplier_id
+WHERE suppliers.company_name = 'Tokyo Traders';
