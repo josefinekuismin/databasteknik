@@ -5,4 +5,9 @@ FROM employees;
 -- Uppgift 2.2
 SELECT home_phone
 FROM employees
-WHERE title = 'Vice President, Sales'
+WHERE title = 'Vice President, Sales';
+
+-- Uppgift 2.3
+SELECT company_name, contact_name, contact_title
+FROM suppliers
+WHERE company_name = 'Svensk Sjöföda AB';
