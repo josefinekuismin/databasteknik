@@ -74,3 +74,8 @@ JOIN products
 JOIN suppliers
     ON products.supplier_id = suppliers.supplier_id
 WHERE order_details.order_id = 10249;
+
+-- Uppgift 15
+SELECT COUNT(*) AS amount
+FROM employees
+WHERE title = 'Sales Representative';
