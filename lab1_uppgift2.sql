@@ -51,3 +51,10 @@ WHERE units_in_stock < reorder_level;
 SELECT *
 FROM products
 WHERE units_in_stock + units_on_order < reorder_level;
+
+-- Uppgift 2.12
+SELECT products.product_name AS product, categories.category_name AS category
+FROM products
+JOIN categories 
+    ON products.category_id = categories.category_id
+WHERE products.product_name = 'Lakkalikööri';
