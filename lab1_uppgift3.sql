@@ -61,3 +61,29 @@ SELECT product_name, category_id, unit_price
 FROM products
 WHERE category_id = '2';
 ORDER BY product_id;
+
+-- Upgift 3.3
+-- Hämta all information från product och categories
+SELECT
+    products.product_name,
+    categories.category_name,
+    products.unit_price
+FROM products
+JOIN categories
+    ON products.category_id = categories.category_id
+ORDER BY product_name;
+
+-- Skapa vyn
+CREATE VIEW product_overview AS
+SELECT
+    products.product_name,
+    categories.category_name,
+    products.unit_price
+FROM products
+JOIN categories
+    ON products.category_id = categories.category_id;
+
+-- Kolla att den nya vyn visar samma information som min sql-fråga i början av uppgiften
+SELECT *
+FROM product_overview
+ORDER BY product_name;
