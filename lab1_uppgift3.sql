@@ -22,3 +22,42 @@ CALL increase_all_prices();
 SELECT product_name, unit_price
 FROM products
 ORDER BY product_id;
+
+-- Uppgift 3.2
+-- Kollar alla priser för kategori med id 1
+SELECT product_name, category_id, unit_price
+FROM products
+WHERE category_id = '1';
+ORDER BY product_id;
+
+-- Kollar alla priser för kategori med id 2
+SELECT product_name, category_id, unit_price
+FROM products
+WHERE category_id = '2';
+ORDER BY product_id;
+
+-- Skapar en procedur som ändrar priset med +5% för alla produkter i kategori 1
+CREATE PROCEDURE increase_prices_by_category(p_category_id INTEGER)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE products
+    SET unit_price = unit_price * 1.05
+    WHERE category_id = p_category_id;
+END;
+$$;
+
+-- Testar köra proceduren från kategorin med id 1
+CALL increase_prices_by_category(1);
+
+-- Kollar alla priser för kategori med id 1 efter prishöjningen
+SELECT product_name, category_id, unit_price
+FROM products
+WHERE category_id = '1';
+ORDER BY product_id;
+
+-- Kollar att alla priser för kategori med id 2 är oförändrade
+SELECT product_name, category_id, unit_price
+FROM products
+WHERE category_id = '2';
+ORDER BY product_id;
