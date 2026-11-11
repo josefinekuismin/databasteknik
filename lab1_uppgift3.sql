@@ -87,3 +87,20 @@ JOIN categories
 SELECT *
 FROM product_overview
 ORDER BY product_name;
+
+-- Uppgift 3.4
+-- Skapa vyn med svenska kronor
+CREATE VIEW product_overview_and_sek AS
+SELECT
+    products.product_name,
+    categories.category_name,
+    products.unit_price,
+    ROUND((products.unit_price * 10)::NUMERIC, 2) AS price_in_sek
+FROM products
+JOIN categories
+    ON products.category_id = categories.category_id;
+
+-- Visar alla produkter från vyn med priser i SEK (sorterade i bokstavsordning)
+SELECT *
+FROM product_overview_and_sek
+ORDER BY product_name;
