@@ -143,7 +143,9 @@ SELECT products.product_name, products.unit_price, suppliers.company_name AS sup
 FROM products
 JOIN suppliers
     ON products.supplier_id = suppliers.supplier_id
-WHERE suppliers.company_name = 'Tokyo Traders';
+WHERE suppliers.company_name = 'Tokyo Traders' 
+    OR suppliers.company_name = 'Svensk Sjöföda AB'
+ORDER BY suppliers;
 
 UPDATE products
 SET unit_price = unit_price * 1.10
@@ -157,4 +159,6 @@ SELECT products.product_name, products.unit_price AS updated_unit_price, supplie
 FROM products
 JOIN suppliers
     ON products.supplier_id = suppliers.supplier_id
-WHERE suppliers.company_name = 'Tokyo Traders';
+WHERE suppliers.company_name = 'Tokyo Traders' 
+    OR suppliers.company_name = 'Svensk Sjöföda AB'
+ORDER BY suppliers;
