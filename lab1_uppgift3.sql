@@ -138,3 +138,30 @@ ROLLBACK;
 SELECT product_id, product_name, unit_price
 FROM products
 WHERE product_id IN (1, 2);
+
+-- Uppgift 3.5
+-- Testa en felaktig transaktion
+-- Kolla priserna innan
+SELECT product_id, product_name, unit_price
+FROM products
+WHERE product_id IN (4, 5);
+
+BEGIN;
+
+UPDATE products
+SET unit_price = 100
+WHERE product_id = 4;
+
+ROLLBACK;
+
+BEGIN;
+-- Felaktig ändring
+UPDATE products
+SET wrong_price = 100
+WHERE product_id = 5;
+
+ROLLBACK;
+
+SELECT product_id, product_name, unit_price
+FROM products
+WHERE product_id IN (4, 5);
