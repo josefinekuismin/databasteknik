@@ -92,13 +92,13 @@ INSERT INTO movie_actor (
 INSERT INTO movie_actor (
     SELECT movies.movie_id, actors.actor_id
     FROM movies, actors
-    WHERE movies.title = 'Don´t Look Up'
+    WHERE movies.title = 'Don`t Look Up'
     AND actors.name = 'Leonardo DiCaprio'
 );
 INSERT INTO movie_actor (
     SELECT movies.movie_id, actors.actor_id
     FROM movies, actors
-    WHERE movies.title = 'Don´t Look Up'
+    WHERE movies.title = 'Don`t Look Up'
     AND actors.name = 'Kate Winslet'
 );
 
@@ -128,7 +128,7 @@ INSERT INTO movie_actor (
 INSERT INTO movie_actor (
     SELECT movies.movie_id, actors.actor_id
     FROM movies, actors
-    WHERE movies.title = 'Fault in our Stars'
+    WHERE movies.title = 'The Fault in our Stars'
     AND actors.name = 'Shailene Woodley'
 );
 
@@ -142,4 +142,31 @@ JOIN movies
 JOIN actors
     ON movie_actor.actor_id = actors.actor_id;
 
-DELETE FROM movie_actor;
+-- Test av ON DELETE CASCADE för reflektionsuppgiften
+
+-- Tar bort den gamla främmande nyckeln mellan movie_actor och movies
+ALTER TABLE movie_actor
+DROP CONSTRAINT movie_actor_movie_id_fkey;
+
+-- Skapar en ny främmande nyckel med ON DELETE CASCADE
+-- Detta gör att kopplingarna i movie_actor tas bort automatiskt om en film raderas
+ALTER TABLE movie_actor
+ADD CONSTRAINT movie_actor_movie_id_fkey
+FOREIGN KEY (movie_id)
+REFERENCES movies(movie_id)
+ON DELETE CASCADE;
+
+-- Kontrollerar vilka skådespelare som är kopplade till filmen med movie_id 2
+SELECT * FROM movie_actor
+WHERE movie_id = 2;
+
+-- Tar bort filmen med movie_id 2 från movies
+-- ON DELETE CASCADE gör att filmens kopplingar i movie_actor också tas bort
+DELETE FROM movies
+WHERE movie_id = 2;
+
+-- Kontrollerar att kopplingarna till den borttagna filmen har försvunnit
+SELECT * FROM movie_actor;
+
+-- Kontrollerar att skådespelarna fortfarande finns kvar i actors
+SELECT * FROM actors;
