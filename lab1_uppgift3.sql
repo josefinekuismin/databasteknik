@@ -104,3 +104,37 @@ JOIN categories
 SELECT *
 FROM product_overview_and_sek
 ORDER BY product_name;
+
+-- Uppgift 3.5
+-- Testa en fungerande transaktion
+
+-- Kontrollera produkternas (med id 1 och 2) ursprungliga priser
+SELECT product_id, product_name, unit_price
+FROM products
+WHERE product_id IN (1, 2);
+
+-- Starta transaktionen
+BEGIN;
+
+-- Höj priset på produkt 1 med 10 %
+UPDATE products
+SET unit_price = unit_price * 1.10
+WHERE product_id = 1;
+
+-- Höj priset på produkt 2 med 4,5 enheter
+UPDATE products
+SET unit_price = unit_price + 4.5
+WHERE product_id = 2;
+
+-- Kontrollera priserna under transaktionen
+SELECT product_id, product_name, unit_price
+FROM products
+WHERE product_id IN (1, 2);
+
+-- Ångra alla ändringar i transaktionen
+ROLLBACK;
+
+-- Kontrollera priserna efter ROLLBACK
+SELECT product_id, product_name, unit_price
+FROM products
+WHERE product_id IN (1, 2);
