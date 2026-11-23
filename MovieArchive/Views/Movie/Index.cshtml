@@ -1,0 +1,30 @@
+
+@model List<MovieArchive.Models.Movie>
+
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<h1>Movie Archive</h1>
+
+<p>Welcome to my movie collection!</p>
+
+<h2>Movies</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Release Year</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.ReleaseYear</td>
+            </tr>
+        }
+    </tbody>
+</table>
