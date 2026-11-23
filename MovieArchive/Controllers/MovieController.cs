@@ -22,5 +22,29 @@ namespace MovieArchive.Controllers
 
             return View(movies);
         }
+
+        // Visar formuläret för att lägga till en film
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // Tar emot informationen från formuläret
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Movie movie)
+        {
+            if (string.IsNullOrWhiteSpace(movie.Title) ||
+                movie.ReleaseYear < 1850 ||
+                movie.ReleaseYear > DateTime.Now.Year + 5)
+            {
+                ModelState.AddModelError("", "Please enter a valid movie title and release year.");
+                return View(movie);
+            }
+
+            return View("Confirmation", movie);
+        }
     }
 }
+

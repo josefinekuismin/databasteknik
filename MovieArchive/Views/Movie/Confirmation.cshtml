@@ -1,0 +1,21 @@
+
+@model MovieArchive.Models.Movie
+
+@{
+    ViewData["Title"] = "Confirmation";
+}
+
+<h1>Movie Submitted Successfully!</h1>
+
+<p>You have submitted the following movie:</p>
+
+<ul>
+    <li><strong>Movie Title:</strong> @Model.Title</li>
+    <li><strong>Release Year:</strong> @Model.ReleaseYear</li>
+</ul>
+
+<a asp-controller="Movie"
+   asp-action="Index"
+   class="btn btn-primary">
+    Back to Movie Collection
+</a>
