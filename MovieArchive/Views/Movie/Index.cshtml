@@ -1,21 +1,33 @@
-
 @model List<MovieArchive.Models.Movie>
 
 @{
-    ViewData["Title"] = "Movies";
+    ViewData["Title"] = "Movie Collection";
 }
 
-<h1>Movie Archive</h1>
+<h1>Movie Collection</h1>
 
 <p>Welcome to my movie collection!</p>
 
-<h2>Movies</h2>
+<a asp-controller="Movie"
+   asp-action="Create"
+   class="btn btn-primary">
+    Add Movie
+</a>
+
+<a asp-controller="Movie"
+   asp-action="Watchlist"
+   class="btn btn-outline-primary">
+    My Watchlist
+</a>
+
+<h2 class="mt-4">Movies</h2>
 
 <table class="table">
     <thead>
         <tr>
             <th>Title</th>
             <th>Release Year</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +36,21 @@
             <tr>
                 <td>@movie.Title</td>
                 <td>@movie.ReleaseYear</td>
+                <td>
+                    <form asp-controller="Movie"
+                          asp-action="AddToWatchlist"
+                          method="post">
+
+                        <input type="hidden"
+                               name="id"
+                               value="@movie.Id" />
+
+                        <button type="submit"
+                                class="btn btn-outline-primary btn-sm">
+                            Add to Watchlist
+                        </button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>

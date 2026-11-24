@@ -105,13 +105,55 @@ namespace MovieArchive.Controllers
             return View("Confirmation", movie);
         }
         // Visar användarens att se-lista
+        // Hämtar användarens sparade film-ID:n från sessionen
+        private List<int> GetWatchlist()
+        {
+            var savedWatchlist = HttpContext.Session.GetString("Watchlist");
+
+            if (string.IsNullOrEmpty(savedWatchlist))
+            {
+                return new List<int>();
+            }
+
+            return JsonSerializer.Deserialize<List<int>>(savedWatchlist)
+            ?? new List<int>();
+        }
+
+// Visar filmer som användaren har lagt till i sin att se-lista
         public IActionResult Watchlist()
         {
-        // Skapar en tom lista med filmer
-        var movies = new List<Movie>();
+            var watchlist = GetWatchlist();
 
-        // Skickar listan till vyn
-        return View(movies);
+            // Filtrerar filmsamlingen utifrån sparade film-ID:n
+            var movies = GetMovies()
+            .Where(movie => watchlist.Contains(movie.Id))
+            .ToList();
+
+            return View(movies);
+        }
+
+        // Lägger till en film i användarens att se-lista
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddToWatchlist(int id)
+        {
+            var watchlist = GetWatchlist();
+
+            // Kontrollerar att filmen finns och inte redan är tillagd
+            if (GetMovies().Any(movie => movie.Id == id) &&
+            !watchlist.Contains(id))
+            {
+                watchlist.Add(id);
+            }
+
+            // Sparar den uppdaterade listan i sessionen
+            HttpContext.Session.SetString(
+            "Watchlist",
+            JsonSerializer.Serialize(watchlist)
+            );
+
+            // Skickar tillbaka användaren till filmsamlingen
+            return RedirectToAction("Index");
         }
     }
 }
