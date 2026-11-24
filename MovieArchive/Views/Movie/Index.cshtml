@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Movie Collection";
+    var watchlist = ViewBag.Watchlist as List<int>
+        ?? new List<int>();
 }
 
 <h1>Movie Collection</h1>
@@ -45,10 +47,21 @@
                                name="id"
                                value="@movie.Id" />
 
-                        <button type="submit"
+                        @if (watchlist.Contains(movie.Id))
+                        {
+                            <button type="button"
+                                class="btn btn-success btn-sm"
+                                disabled>
+                                ✓ Added to Watchlist
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="submit"
                                 class="btn btn-outline-primary btn-sm">
-                            Add to Watchlist
-                        </button>
+                                Add to Watchlist
+                            </button>
+                        }
                     </form>
                 </td>
             </tr>

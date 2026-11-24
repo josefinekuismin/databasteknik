@@ -45,10 +45,13 @@ namespace MovieArchive.Controllers
             return movies;
         }
 
-        // Hämtar och visar hela filmsamlingen på startsidan
+        // Hämtar och visar hela filmsamlingen
         public IActionResult Index()
         {
             var movies = GetMovies();
+
+            // Skickar användarens sparade film-ID:n till vyn
+            ViewBag.Watchlist = GetWatchlist();
 
             return View(movies);
         }
