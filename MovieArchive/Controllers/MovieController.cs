@@ -50,9 +50,13 @@ namespace MovieArchive.Controllers
         {
             var movies = GetMovies();
 
-            // Skickar användarens sparade film-ID:n till vyn
+            // Skickar sparade film-ID:n till vyn via ViewBag
             ViewBag.Watchlist = GetWatchlist();
 
+            // Skickar antalet filmer till vyn via ViewData
+            ViewData["MovieCount"] = movies.Count;
+
+            // Skickar filmsamlingen till vyn via modellen
             return View(movies);
         }
 
