@@ -158,6 +158,26 @@ namespace MovieArchive.Controllers
             // Skickar tillbaka användaren till filmsamlingen
             return RedirectToAction("Index");
         }
+        // Tar bort en film från användarens att se-lista
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult RemoveFromWatchlist(int id)
+        {
+            // Hämtar användarens att se-lista
+            var watchlist = GetWatchlist();
+
+            // Tar bort filmens ID från listan
+            watchlist.Remove(id);
+
+            // Sparar den uppdaterade listan i sessionen
+            HttpContext.Session.SetString(
+                "Watchlist",
+            JsonSerializer.Serialize(watchlist)
+            );
+
+            // Skickar tillbaka användaren till att se-listan
+            return RedirectToAction("Watchlist");
+        }
     }
 }
 

@@ -1,3 +1,4 @@
+
 @model List<MovieArchive.Models.Movie>
 
 @{
@@ -19,6 +20,7 @@ else
             <tr>
                 <th>Title</th>
                 <th>Release Year</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +29,21 @@ else
                 <tr>
                     <td>@movie.Title</td>
                     <td>@movie.ReleaseYear</td>
+                    <td>
+                        <form asp-controller="Movie"
+                              asp-action="RemoveFromWatchlist"
+                              method="post">
+
+                            <input type="hidden"
+                                   name="id"
+                                   value="@movie.Id" />
+
+                            <button type="submit"
+                                    class="btn btn-outline-danger btn-sm">
+                                Remove from Watchlist
+                            </button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>
