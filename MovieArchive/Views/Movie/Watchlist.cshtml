@@ -1,0 +1,40 @@
+@model List<MovieArchive.Models.Movie>
+
+@{
+    ViewData["Title"] = "My Watchlist";
+}
+
+<h1>My Watchlist</h1>
+
+<p>Keep track of the movies you want to watch.</p>
+
+@if (Model.Count == 0)
+{
+    <p>Your watchlist is empty.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Release Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model)
+            {
+                <tr>
+                    <td>@movie.Title</td>
+                    <td>@movie.ReleaseYear</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a asp-controller="Movie"
+   asp-action="Index"
+   class="btn btn-primary">
+    Back to Movie Collection
+</a>

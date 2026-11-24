@@ -104,7 +104,15 @@ namespace MovieArchive.Controllers
             // Skickar den nya filmen till bekräftelsesidan
             return View("Confirmation", movie);
         }
+        // Visar användarens att se-lista
+        public IActionResult Watchlist()
+        {
+        // Skapar en tom lista med filmer
+        var movies = new List<Movie>();
+
+        // Skickar listan till vyn
+        return View(movies);
+        }
     }
 }
-
 
